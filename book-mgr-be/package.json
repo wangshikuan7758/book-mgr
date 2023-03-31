@@ -4,7 +4,8 @@
     "description": "毕设项目的服务端",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon src/index.js"
     },
     "keywords": [
         "毕设"
@@ -12,7 +13,13 @@
     "author": "wangshikuan",
     "license": "ISC",
     "dependencies": {
+        "@koa/cors": "^4.0.0",
+        "@koa/router": "^12.0.0",
         "koa": "^2.14.1",
+        "koa-body": "^6.0.1",
         "mongoose": "^7.0.3"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.22"
     }
 }
