@@ -1,5 +1,7 @@
 // require一个文件就是执行这个文件
 require('./Schemas/User');
+require('./Schemas/InviteCode');
+
 const mongoose = require('mongoose');
 // 1.给那个数据库的2.那个集合3.添加什么格式的文档
 // Schema 映射了MongoDB下的一个集合,并且他的内容就是集合下文档的构成
