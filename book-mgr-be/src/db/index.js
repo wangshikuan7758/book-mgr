@@ -1,6 +1,7 @@
 // require一个文件就是执行这个文件
 require('./Schemas/User');
 require('./Schemas/InviteCode');
+require('./Schemas/Book');
 
 const mongoose = require('mongoose');
 // 1.给那个数据库的2.那个集合3.添加什么格式的文档

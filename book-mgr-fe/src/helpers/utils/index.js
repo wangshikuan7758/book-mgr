@@ -29,3 +29,22 @@ export const result = (response, authShowErrorMsg = true) => {
         },
     };
 };
+
+export const clone = (obj) => {
+    return JSON.parse(JSON.stringify(obj));
+};
+
+// 把拿到的时间戳转成正常的日期形式
+export const formatTimestamp = (ts) => {
+    const date = new Date(Number(ts));
+
+    const YYYY = date.getFullYear();
+    const MM = date.getMonth() + 1;
+    const DD = date.getDay();
+
+    const hh = date.getHours();
+    const mm = date.getMinutes();
+    const ss = date.getSeconds();
+
+    return `${YYYY}/${MM}/${DD} ${hh}:${mm}:${ss}`;
+};
