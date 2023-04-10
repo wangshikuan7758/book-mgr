@@ -1,7 +1,7 @@
 // 先把mongoose引进来
 const mongoose = require('mongoose');
 // 导入方法
-const { getMate } = require('../helpers');
+const { getMeta, preSave } = require('../helpers');
 const BookSchema = new mongoose.Schema({
     // 书名
     name: String,
@@ -15,8 +15,11 @@ const BookSchema = new mongoose.Schema({
     classify: String,
     // 库存
     count: Number,
-    meta: getMate(),
+    meta: getMeta(),
 });
+
+BookSchema.pre('save', preSave);
+
 
 // 用mongoose注册成一个模型
 mongoose.model('Book', BookSchema);

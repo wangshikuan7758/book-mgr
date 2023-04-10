@@ -2,14 +2,16 @@
 const mongoose = require('mongoose');
 // 导入方法
 const { getMeta, preSave } = require('../helpers');
-const UserSchema = new mongoose.Schema({
-    account: String,
-    password: String,
+const InventoryLogSchema = new mongoose.Schema({
+    type: String,
+    num: Number,
+    user: String,
+
     meta: getMeta(),
 });
 
-UserSchema.pre('save', preSave);
+InventoryLogSchema.pre('save', preSave);
 
 
 // 用mongoose注册成一个模型
-mongoose.model('User', UserSchema);
+mongoose.model('InventoryLog', InventoryLogSchema);

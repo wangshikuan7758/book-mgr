@@ -2,6 +2,7 @@
 require('./Schemas/User');
 require('./Schemas/InviteCode');
 require('./Schemas/Book');
+require('./Schemas/InventoryLog');
 
 const mongoose = require('mongoose');
 // 1.给那个数据库的2.那个集合3.添加什么格式的文档
