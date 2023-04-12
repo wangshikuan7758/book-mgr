@@ -4,6 +4,7 @@ const koaBody = require('koa-body');
 // const Body = require('koa-body');
 const { connect } = require('./db');
 const registerRoutes = require('./routers');
+const { middleware: koaJwtMiddleware, catchTokenError } = require('./helpers/token');
 // @koa/cors这个包处理跨域问题 在npmjs.com上搜索这个包有教程
 const cors = require('@koa/cors');
 
@@ -13,6 +14,11 @@ connect().then(() => {
     // 注册中间件
     app.use(cors());
     app.use(koaBody());
+
+    app.use(catchTokenError);
+
+    koaJwtMiddleware(app);
+
     registerRoutes(app);
     // 监听端口号3000,开启一个http服务,接受http请求并做处理,处理完后响应
     app.listen(3000, () => {

@@ -6,6 +6,6 @@ var token = jwt.sign({
 
 console.log(token);
 
-jwt.verify(token, 'aaaa', (err, payload) => {
+jwt.verify(token, 'aaaabb', (err, payload) => {
     console.log(err, payload);
 });

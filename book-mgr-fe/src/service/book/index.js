@@ -1,7 +1,8 @@
 // 这个文件写和认证相关的接口
-
 import axios from 'axios';
+import { getToken } from '@/helpers/token';
 
+axios.defaults.headers['Authorization'] = `Bearer ${getToken()}`;
 
 export const add = (form) => {
     return axios.post(
