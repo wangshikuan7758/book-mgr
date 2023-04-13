@@ -32,6 +32,12 @@ const routes = [{
                 component: () =>
                     import ( /* webpackChunkName: "User" */ '../views/Users/index.vue'),
             },
+            {
+                path: 'log',
+                name: 'Log',
+                component: () =>
+                    import ( /* webpackChunkName: "Log" */ '../views/Log/index.vue'),
+            },
         ],
     },
 
@@ -43,11 +49,17 @@ const router = createRouter({
 });
 
 router.beforeEach(async(to, from, next) => {
+    // const reqArr = [];
+
     if (!store.state.characterInfo.length) {
-        store.dispatch('getCharacterInfo');
+        await store.dispatch('getCharacterInfo');
     }
 
-    store.dispatch('getUserInfo');
+    if (!store.state.userInfo.account) {
+        await store.dispatch('getUserInfo');
+    }
+
+    // await Promise.all(reqArr);
 
     next();
 });

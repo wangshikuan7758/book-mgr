@@ -1,5 +1,11 @@
 import store from '@/store';
 
+// export const isAdmin = () => {
+//     const uc = store.state.userCharacter;
+
+//     return uc.name === 'admin';
+// };
+
 export const getCharacterInfoById = (id) => {
     const { characterInfo } = store.state;
 
@@ -10,5 +16,4 @@ export const getCharacterInfoById = (id) => {
     return one || {
         title: '未知角色',
     };
-
 };
