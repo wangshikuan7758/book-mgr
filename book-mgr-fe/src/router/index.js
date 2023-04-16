@@ -38,6 +38,37 @@ const routes = [{
                 component: () =>
                     import ( /* webpackChunkName: "Log" */ '../views/Log/index.vue'),
             },
+            {
+                path: 'reset/password',
+                name: 'ResetPassword',
+                component: () =>
+                    import ( /* webpackChunkName: "ResetPassword" */ '../views/ResetPassword/index.vue'),
+            },
+            {
+                path: 'invite-code',
+                name: 'InviteCode',
+                component: () =>
+                    import ( /* webpackChunkName: "InviteCode" */ '../views/InviteCode/index.vue'),
+            },
+            {
+                path: 'book-classify',
+                name: 'BookClassify',
+                component: () =>
+                    import ( /* webpackChunkName: "BookClassify" */ '../views/BookClassify/index.vue'),
+            },
+            {
+                path: 'profile',
+                name: 'Profile',
+                component: () =>
+                    import ( /* webpackChunkName: "Profile" */ '../views/Profile/index.vue'),
+            },
+            {
+                path: 'dashboard',
+                name: 'Dashboard',
+                component: () =>
+                    import ( /* webpackChunkName: "Dashboard" */ '../views/Dashboard/index.vue'),
+            },
+
         ],
     },
 
@@ -49,17 +80,24 @@ const router = createRouter({
 });
 
 router.beforeEach(async(to, from, next) => {
-    // const reqArr = [];
+
 
     if (!store.state.characterInfo.length) {
         await store.dispatch('getCharacterInfo');
     }
 
+    const reqArr = [];
+
     if (!store.state.userInfo.account) {
-        await store.dispatch('getUserInfo');
+        reqArr.push(store.dispatch('getUserInfo'));
     }
 
-    // await Promise.all(reqArr);
+    if (!store.state.bookClassify.length) {
+        reqArr.push(store.dispatch('getBookClassify'));
+
+    }
+
+    await Promise.all(reqArr);
 
     next();
 });

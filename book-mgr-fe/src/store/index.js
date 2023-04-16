@@ -1,11 +1,12 @@
 import { createStore, Store } from 'vuex';
-import { character, user } from '@/service';
+import { character, user, bookClassify } from '@/service';
 import { getCharacterInfoById } from '@/helpers/character';
 import { result } from '@/helpers/utils';
 
 export default createStore({
     state: {
         characterInfo: [],
+        bookClassify: [],
         userInfo: {},
         userCharacter: {},
     },
@@ -19,8 +20,19 @@ export default createStore({
         setUserCharacter(state, userCharacter) {
             state.userCharacter = userCharacter;
         },
+        setBookClassify(state, bookClassify) {
+            state.bookClassify = bookClassify;
+        },
     },
     actions: {
+        async getBookClassify(store) {
+            const res = await bookClassify.list();
+            result(res)
+                .success(({ data }) => {
+                    store.commit('setBookClassify', data);
+                });
+        },
+
         async getCharacterInfo(store) {
             const res = await character.list();
 

@@ -1,10 +1,14 @@
 <template>
   <div>
     <a-spin :spinning="loading">
-      <a-card>
-        <h2>操作日志</h2>
+      <a-card
+        :title="simple ? '最近的操作日志' : ''"
+      >
+        <div v-if="!simple">
+          <h2>操作日志</h2>
 
-       <a-divider />
+            <a-divider />
+        </div>
 
        <div>
         <a-table
@@ -12,19 +16,19 @@
           :columns="columns"
           :pagination="false"
           :data-source="list"
-        >
+          >
           <template #createdAt="{record}">
               {{formatTimestamp(record.meta.createdAt)}}
           </template>
 
-          <template #action="{record}">
+          <template v-if="!simple" #action="{record}">
               <a href="javascript:;" @click="remove(record)">删除</a>
           </template>
 
-        </a-table>
+          </a-table>
         </div>
 
-        <flex-end style="margin-top:24px">
+        <flex-end v-if="!simple" style="margin-top:24px">
           <a-pagination
             v-model:current="curPage"
             :pageSize="20"
