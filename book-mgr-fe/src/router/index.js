@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
+import { log, user } from '@/service';
 import store from '@/store';
+import { message } from 'ant-design-vue';
 
 // 前端路由
 const routes = [{
@@ -12,6 +14,7 @@ const routes = [{
     {
         path: '/',
         name: 'BasicLayout',
+        redirect: '/auth',
         component: () =>
             import ( /* webpackChunkName: "BasicLayout" */ '../layout/BasicLayout/index.vue'),
         children: [{
@@ -80,6 +83,31 @@ const router = createRouter({
 });
 
 router.beforeEach(async(to, from, next) => {
+    let res = {};
+
+    try {
+        res = await user.info();
+    } catch (e) {
+        if (e.message.includes('code 401')) {
+            res.code = 401;
+        }
+
+    }
+
+    const { code } = res;
+
+    if (code === 401) {
+        if (to.path === '/auth') {
+            next();
+            return;
+        }
+
+        message.error('认证失败,请重新登入');
+        next('/auth');
+
+        return;
+    }
+
 
 
     if (!store.state.characterInfo.length) {
@@ -98,6 +126,11 @@ router.beforeEach(async(to, from, next) => {
     }
 
     await Promise.all(reqArr);
+
+    if (to.path === '/auth') {
+        next('/books');
+        return;
+    }
 
     next();
 });

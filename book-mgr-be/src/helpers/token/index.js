@@ -3,6 +3,7 @@ const config = require('../../project.config');
 const koaJwt = require('koa-jwt');
 
 
+
 const getToken = (ctx) => {
     let { authorization } = ctx.header;
     // Bearer后要加一个空格
@@ -34,6 +35,7 @@ const middleware = (app) => {
         ],
     }));
 };
+
 
 const catchTokenError = async(ctx, next) => {
     return next().catch((error) => {
