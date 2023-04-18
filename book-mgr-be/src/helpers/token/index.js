@@ -29,6 +29,7 @@ const middleware = (app) => {
     app.use(koaJwt({
         secret: config.JWT_SECRET,
     }).unless({
+        // 以下三个路径不进行校验
         path: [
             /^\/auth\/login/,
             /^\/auth\/register/,
