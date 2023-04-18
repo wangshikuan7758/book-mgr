@@ -11,7 +11,7 @@ import { setToken } from '@/helpers/token';
 
 
 export default defineComponent({
-    // 组件要注册后才能使用(Ant里面的)
+    // 组件要注册后才能使用(Ant-design里面的)
     components: {
         UserOutlined,
         LockOutlined,
@@ -33,12 +33,13 @@ export default defineComponent({
                 // 用这个content里面内容的方法要把文件后缀改成 .jsx
                 content: (
                     <div>
-                        <Input class="__forget_password-account" />
+                        <Input class="__forget_password_account" />
                     </div>
                 ),
                 onOk: async() => {
-                    const el=document.querySelector('.__forget_password-account');
+                    const el=document.querySelector('.__forget_password_account');
                     let account=el.value;
+
 
                     const res=await resetPassword.add(account);
 

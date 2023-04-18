@@ -12,7 +12,7 @@ const profile = require('./profile');
 const dashboard = require('./dashboard');
 
 
-
+// app.use 注册为路由
 module.exports = (app) => {
     app.use(auth.routes());
     app.use(inviteCode.routes());

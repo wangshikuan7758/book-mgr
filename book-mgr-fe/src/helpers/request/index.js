@@ -11,7 +11,7 @@ const getHeaders = () => {
     return {
         Authorization: `Bearer ${getToken()}`,
     }
-}
+};
 
 export const post = (url, data = {}) => {
     return axios.post(getURL(url), data, {

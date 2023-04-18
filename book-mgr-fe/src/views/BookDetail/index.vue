@@ -25,13 +25,6 @@
           </div>
 
           <div class="item">
-            <div class="title">分类</div>
-            <div class="content">{{d.classify}}</div>
-          </div>
-        </div>
-
-        <div class="items">
-          <div class="item">
             <div class="title">出版日期</div>
             <div class="content">{{formatTimestamp(d.publishDate)}}</div>
           </div>
