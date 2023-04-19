@@ -14,6 +14,7 @@ const app = new Koa();
 connect().then(() => {
     // 注册中间件
     app.use(cors());
+
     app.use(koaBody());
 
     app.use(catchTokenError);
